@@ -10,7 +10,6 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Automation;
 using Path = System.IO.Path;
 
 namespace PipGUI_V2
@@ -29,12 +28,14 @@ namespace PipGUI_V2
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             paclist.Items.Clear();
+            App.Current.MainWindow.Title = "Getting pacages";
             await Task.Run(() => Tasks.Getpac());
             foreach (string pakc in Vars.packs)
             {
                 paclist.Items.Add(pakc);
             }
             Vars.packs.Clear();
+            App.Current.MainWindow.Title = "Pip GUI V2";
         }
 
         //==========================================|install packages|==========================================
@@ -207,7 +208,7 @@ namespace PipGUI_V2
             }
         }
 
-        //==========================================|uninstall all  requirements|==========================================
+        //==========================================|uninstall all requirements|==========================================
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             var conf = MessageBox.Show("are you sure you want to uninstall all installed packages ?", "confirm",
@@ -218,7 +219,6 @@ namespace PipGUI_V2
             {
                 //==========================================|yes|==========================================
                 case MessageBoxResult.Yes:
-
                     string temppath = Path.GetTempPath();
                     Directory.SetCurrentDirectory(temppath);
 

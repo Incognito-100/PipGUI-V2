@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <RootNamespace>PipGUI_V2</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HandyControl" Version="3.3.0" />
+    <PackageReference Include="HandyControl" Version="3.4.0" />
   </ItemGroup>
 
 </Project>
