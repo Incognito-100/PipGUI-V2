@@ -15,7 +15,7 @@
             <Button HorizontalAlignment="Left" Margin="-530,31,0,0" VerticalAlignment="Top" Height="44" Width="168" Content="install pakages" Click="Button_Click_1" />
             <Button HorizontalAlignment="Left" Margin="-530,81,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="uninstall pakages" Click="Button_Click_2" />
             <Button HorizontalAlignment="Left" Margin="-530,251,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="uninstall requirements file" Click="Button_Click_5" />
-            <ListBox x:Name="paclist" Margin="-316,81,-201,160" ScrollViewer.CanContentScroll="True" SelectionMode="Multiple"></ListBox>
+            <ListBox x:Name="Paclist" Margin="-316,81,-201,160" ScrollViewer.CanContentScroll="True" SelectionMode="Multiple"></ListBox>
         </hc:FlexPanel>
     </Grid>
 </Window>

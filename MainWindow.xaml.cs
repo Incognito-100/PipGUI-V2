@@ -27,14 +27,14 @@ namespace PipGUI_V2
         //==========================================|get installed packages|==========================================
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            paclist.Items.Clear();
+            Paclist.Items.Clear();
             App.Current.MainWindow.Title = "Getting pacages";
             await Task.Run(() => Tasks.Getpac());
-            foreach (string pakc in Vars.packs)
+            foreach (string pakc in Vars.Packs)
             {
-                paclist.Items.Add(pakc);
+                Paclist.Items.Add(pakc);
             }
-            Vars.packs.Clear();
+            Vars.Packs.Clear();
             App.Current.MainWindow.Title = "Pip GUI V2";
         }
 
@@ -91,10 +91,10 @@ namespace PipGUI_V2
         //==========================================|unininstall a package|==========================================
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            if (paclist.Items.Count != 0)
+            if (Paclist.Items.Count != 0)
             {
                 string s = "";
-                foreach (object p in paclist.SelectedItems)
+                foreach (object p in Paclist.SelectedItems)
                 {
                     s = $"{s}{p}\n";
                 }
@@ -107,7 +107,7 @@ namespace PipGUI_V2
                     File.Delete($@"{temppath}\packslist.txt");
 
                     File.WriteAllText("packslist.txt", s);
-                    string uninststeps = "/C pip uninstall -r packslist.txt -y";
+                    const string uninststeps = "/C pip uninstall -r packslist.txt -y";
 
                     Process.Start("CMD.exe", uninststeps);
                 }
@@ -116,7 +116,7 @@ namespace PipGUI_V2
                 else
                 {
                     File.WriteAllText("packslist.txt", s);
-                    string uninststeps = "/C pip uninstall -r packslist.txt -y";
+                    const string uninststeps = "/C pip uninstall -r packslist.txt -y";
 
                     Process.Start("CMD.exe", uninststeps);
                 }
@@ -189,6 +189,7 @@ namespace PipGUI_V2
                         imports.Add(line);
                     }
                 }
+
                 //==========================================|clean imports|==========================================
                 foreach (string line in imports)
                 {
@@ -222,27 +223,23 @@ namespace PipGUI_V2
                     string temppath = Path.GetTempPath();
                     Directory.SetCurrentDirectory(temppath);
 
-                    string makereqfile = "/C pip freeze > uninst.txt";
+                    const string makereqfile = "/C pip freeze > uninst.txt";
 
-                    Helper.CMD(makereqfile, 500);
+                    Helper.Cmd(makereqfile, 500);
 
-                    string uninstevery = "/C pip uninstall -r uninst.txt -y";
+                    const string uninstevery = "/C pip uninstall -r uninst.txt -y";
                     Process.Start("CMD.exe", uninstevery);
 
-                    string clearcache = "/C pip cache purge";
+                    const string clearcache = "/C pip cache purge";
 
-                    Helper.CMD(clearcache, 500);
-                    paclist.Items.Clear();
+                    Helper.Cmd(clearcache, 500);
+                    Paclist.Items.Clear();
                     break;
 
                 //==========================================|no|==========================================
                 case MessageBoxResult.No:
                     break;
             }
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
         }
 
         private void Window_Closed(object sender, EventArgs e)

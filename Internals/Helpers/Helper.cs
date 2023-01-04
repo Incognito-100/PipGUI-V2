@@ -3,12 +3,11 @@ using System.Threading;
 
 namespace PipGUI_V2.Internals.Helpers
 {
-    public class Helper
+    public static class Helper
     {
-        public static void CMD(string arg, int delay)
+        public static void Cmd(string arg, int delay)
         {
-            Process d = new
-            Process();
+            Process d = new Process();
             d.StartInfo.UseShellExecute = true;
             d.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             d.StartInfo.FileName = "CMD.exe";

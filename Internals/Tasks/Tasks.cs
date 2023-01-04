@@ -9,7 +9,7 @@ namespace PipGUI_V2.Internals.Tasks
     {
         public static Task Getpac()
         {
-            Vars.packs.Clear();
+            Vars.Packs.Clear();
             string temppath = Path.GetTempPath();
             Directory.SetCurrentDirectory(temppath);
 
@@ -20,27 +20,26 @@ namespace PipGUI_V2.Internals.Tasks
 
                 string makereqfile = "/C pip freeze > requirements.txt";
 
-                Helper.CMD(makereqfile, 500);
+                Helper.Cmd(makereqfile, 500);
             }
             //==========================================|make req file and read|==========================================
             else
             {
                 string makereqfile = "/C pip freeze > requirements.txt";
 
-                Helper.CMD(makereqfile, 500);
+                Helper.Cmd(makereqfile, 500);
             }
 
         //==========================================|get file dir|==========================================
         retryload:
             try
             {
-                using (StreamReader r = new StreamReader($@"{temppath}\requirements.txt"))
+                StreamReader r = new StreamReader($@"{temppath}\requirements.txt");
+
+                string line;
+                while ((line = r.ReadLine()) != null)
                 {
-                    string line;
-                    while ((line = r.ReadLine()) != null)
-                    {
-                        Vars.packs.Add(line);
-                    }
+                    Vars.Packs.Add(line);
                 }
             }
             //==========================================|if file not readable|==========================================

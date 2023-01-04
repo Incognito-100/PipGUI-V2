@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autoupdater.NET.Official" Version="1.7.6" />
     <PackageReference Include="HandyControl" Version="3.4.0" />
   </ItemGroup>
 
