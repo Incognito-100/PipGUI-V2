@@ -174,7 +174,7 @@ namespace PipGUI_V2
             }
         }
 
-        //==========================================|generate a requirements file|==========================================
+        //==========================================|Generate a requirements file|==========================================
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             // Create open file dialog
