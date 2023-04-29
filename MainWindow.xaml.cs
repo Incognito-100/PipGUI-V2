@@ -108,7 +108,7 @@ namespace PipGUI_V2
             }
         }
 
-        //==========================================|unininstall a package|==========================================
+        //==========================================|Unininstall a package|==========================================
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             if (Paclist.Items.Count == 0)
