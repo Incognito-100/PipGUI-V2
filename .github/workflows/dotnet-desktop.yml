@@ -33,7 +33,7 @@ jobs:
       id: github_release
       uses: mikepenz/release-changelog-builder-action@v3
       with:
-        previous_release: ${{ github.event.client_payload.previous_release.tag_name }}
+        fromTag: ${{ github.event.client_payload.previous_release.tag_name }}
 
     - name: Download Artifact
       uses: actions/download-artifact@v2
