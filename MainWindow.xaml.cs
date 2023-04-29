@@ -95,7 +95,7 @@ namespace PipGUI_V2
 
                 switch (inpres)
                 {
-                    //==========================================|yes|==========================================
+                    //==========================================|ydes|==========================================
                     case MessageBoxResult.Yes:
                         string command = $"/C pip install {instpacname}";
                         Process.Start("CMD.exe", command);
