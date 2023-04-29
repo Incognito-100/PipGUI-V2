@@ -24,7 +24,7 @@ namespace PipGUI_V2
             InitializeComponent();
         }
 
-        //==========================================|Get installed packages|==========================================
+        //==========================================|get installed packages|==========================================
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             try
