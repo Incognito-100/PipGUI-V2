@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <RootNamespace>PipGUI_V2</RootNamespace>
-    <EnableWindowsTargeting></EnableWindowsTargeting >
+    <EnableWindowsTargeting>true</EnableWindowsTargeting >
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
