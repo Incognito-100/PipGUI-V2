@@ -2,8 +2,8 @@ name: Build and Release
 
 on:
   push:
-    branches: ["master"]
-
+    tags:
+     - v*
 env:
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
   OUTDIR: ${{ github.workspace }}/Res
