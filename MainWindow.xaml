@@ -1,0 +1,21 @@
+﻿<Window x:Class="PipGUI_V2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="496" Width="847" Closing="Window_Closed" Closed="Window_Closed">
+    <Grid>
+        <hc:FlexPanel>
+            <Button x:Name="getreq" HorizontalAlignment="Left" Margin="366,339,0,0" VerticalAlignment="Top" Height="78" Width="180" Content="Get requirements" Click="Button_Click" />
+            <Button HorizontalAlignment="Left" Margin="-530,382,0,0" VerticalAlignment="Top" Height="60" Width="156" Content="Uninstall all pakages" Click="Button_Click_6" />
+            <Button HorizontalAlignment="Left" Margin="-530,201,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="uninstall requirements file" RenderTransformOrigin="0.88,0.495" Click="Button_Click_4" />
+            <Button HorizontalAlignment="Left" Margin="-530,154,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="Install requirements file" Click="Button_Click_3" />
+            <Button HorizontalAlignment="Left" Margin="-530,31,0,0" VerticalAlignment="Top" Height="44" Width="168" Content="install pakages" Click="Button_Click_1" />
+            <Button HorizontalAlignment="Left" Margin="-530,81,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="uninstall pakages" Click="Button_Click_2" />
+            <Button HorizontalAlignment="Left" Margin="-530,251,0,0" VerticalAlignment="Top" Height="45" Width="168" Content="generate requirements file" Click="Button_Click_5" />
+            <ListBox x:Name="Paclist" Margin="-316,81,-201,160" ScrollViewer.CanContentScroll="True" SelectionMode="Multiple"></ListBox>
+        </hc:FlexPanel>
+    </Grid>
+</Window>
