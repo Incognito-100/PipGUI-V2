@@ -2,8 +2,8 @@ name: Build and Release
 
 on:
   push:
-    branches: ["master"]
-
+    tags:
+     - v*
 env:
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
   OUTDIR: ${{ github.workspace }}/Res
@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    
     - name: Checkout code
       uses: actions/checkout@v2
 
@@ -34,6 +35,7 @@ jobs:
       uses: mikepenz/release-changelog-builder-action@v3
       with:
         fromTag: ${{ github.event.client_payload.previous_release.tag_name }}
+        toTag: ${{ github.ref }}
 
     - name: Download Artifact
       uses: actions/download-artifact@v2
@@ -46,8 +48,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: "PipGUI V${{ github.ref }}"
+        tag_name: ${{github.ref_name}}
+        release_name: "PipGUI V${{github.ref_name}}"
         body: ${{ steps.github_release.outputs.changelog }}
 
     - name: Upload Release Asset
