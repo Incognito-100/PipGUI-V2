@@ -133,7 +133,7 @@ namespace PipGUI_V2
             Process.Start("CMD.exe", uninstallCommand);
         }
 
-        //==========================================|installs a requirements file|==========================================
+        //==========================================|Installs a requirements file|==========================================
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
@@ -154,7 +154,7 @@ namespace PipGUI_V2
             }
         }
 
-        //==========================================|uninstall a requirements file|==========================================
+        //==========================================|Uninstall a requirements file|==========================================
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog
