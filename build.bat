@@ -1,1 +1,0 @@
-dotnet publish -r win-x64 /p:PublishSingleFIle=true /p:IncludeNativeLibrariesForSelfExtract=true /p:EnableCompressionInSingleFile=true --output dist
