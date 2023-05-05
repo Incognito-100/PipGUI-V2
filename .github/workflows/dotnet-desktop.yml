@@ -4,10 +4,10 @@ on:
   push:
     branches: ["master"]
     tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - "v*"
 env:
   GITHUB_TOKEN: ${{ secrets.TOKEN }}
-  OUTDIR: ${{ github.workspace }}/Res
+  OUTDIR: ${{ github.workspace }}/dist
 
 jobs:
   build:
@@ -15,51 +15,29 @@ jobs:
     steps:
     
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+            submodules: true
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
 
-    - name: Build
-      run: dotnet publish -r win-x64 /p:PublishSingleFIle=true /p:IncludeNativeLibrariesForSelfExtract=true /p:EnableCompressionInSingleFile=true --output ${{ env.OUTDIR }}
+    - name: Run the Cake script
+      uses: cake-build/cake-action@v1
+      with:
+          verbosity: Diagnostic
 
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: PipGUI V2.exe
         path: ${{ env.OUTDIR }}/PipGUI V2.exe
 
-    - name: Build Changelog
-      id: github_release
-      uses: mikepenz/release-changelog-builder-action@v3
+    - name: "Build & test"
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        fromTag: ${{ github.event.client_payload.previous_release.tag_name }}
-        toTag: ${{ github.ref }}
-
-    - name: Download Artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: PipGUI V2.exe
-    
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      with:
-        tag_name: ${{github.ref_name}}
-        release_name: "PipGUI V${{github.ref_name}}"
-        body: ${{ steps.github_release.outputs.changelog }}
-
-    - name: Upload Release Asset
-      id: upload_release_asset
-      uses: actions/upload-release-asset@v1.0.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ env.OUTDIR }}/PipGUI V2.exe
-        asset_name: ${{ github.event.repository.name }}.exe
-        asset_content_type: application/zip
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: ${{ OUTDIR }}\PipGUI V2.exe
