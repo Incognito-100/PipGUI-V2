@@ -40,4 +40,4 @@ jobs:
       with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          files: ${{ OUTDIR }}\PipGUI V2.exe
+          files: ${{ env.OUTDIR }}\PipGUI V2.exe
