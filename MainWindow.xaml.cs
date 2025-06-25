@@ -41,19 +41,24 @@ namespace PipGUI_V2
                 //clear paclist
                 Paclist.Items.Clear();
 
-                // Populate the package list with the retrieved packages
-                foreach (string pack in Vars.Packs)
+                if (Vars.Packs.Count == 0)
                 {
-                    Paclist.Items.Add(pack);
+                    Paclist.Items.Add("No packages installed.");
                 }
+                else
+                {
+                    // Populate the package list with the retrieved packages
+                    foreach (string pack in Vars.Packs)
+                    {
+                        Paclist.Items.Add(pack);
+                    }
 
-                // Clear the list of packages
-                Vars.Packs.Clear();
+                    // Clear the list of packages
+                    Vars.Packs.Clear();
+                }
             }
             catch (Exception ex)
             {
-                // Handle any exceptions that occur during package retrieval
-                // For example, display an error message to the user
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
@@ -118,7 +123,7 @@ namespace PipGUI_V2
             }
 
             string selectedPackages = "";
-            foreach (object package in Paclist.SelectedItems)
+            foreach (var package in Paclist.SelectedItems)
             {
                 selectedPackages += $"{package}\n";
             }
@@ -250,7 +255,7 @@ namespace PipGUI_V2
             string temppath = Path.GetTempPath();
             Directory.SetCurrentDirectory(temppath);
 
-            string[] files = { "packslist.txt", "requirements.txt", "uninst.txt" };
+            string[] files = ["packslist.txt", "requirements.txt", "uninst.txt"];
 
             //==========================================|check if dirs exist|==========================================
             foreach (string file in files)
@@ -264,8 +269,11 @@ namespace PipGUI_V2
                     MessageBox.Show(ex.Message);
                     return;
                 }
-                // Exit the application after deleting the files
-                Application.Current.Shutdown();
+                finally
+                {
+                    // Exit the application after deleting the files
+                    Application.Current.Shutdown();
+                }
             }
         }
     }

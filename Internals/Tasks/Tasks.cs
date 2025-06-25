@@ -20,16 +20,16 @@ namespace PipGUI_V2.Internals.Tasks
             }
 
             // Create requirements file and read its contents
-            string makereqfile = "/C pip freeze > requirements.txt";
+            const string makereqfile = "/C pip freeze > requirements.txt";
             Helper.Cmd(makereqfile, 500);
 
             while (true)
             {
                 try
                 {
-                    StreamReader r = new(reqfilepath);
+                    StreamReader sr = new(reqfilepath);
                     string line;
-                    while ((line = r.ReadLine()) != null)
+                    while ((line = sr.ReadLine()) != null)
                     {
                         Vars.Packs.Add(line);
                     }
